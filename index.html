@@ -8,30 +8,47 @@
         <div class="container">
             <h1>Seed Bead Pattern Maker</h1>
             <div class="inputGroup">
-                <form action="" id="beadConfig">
-                    <div class="section">
-                        <label for="length">Row Length:</label>
-                        <input type="number" id="length" value="20">
-                    </div>
-                    <div class="section">
-                        <label for="topRows"># of Staggered Top Rows:</label>
-                        <input type="number" id="topRows" value="15">
-                    </div>
-                    <div class="section">
-                        <label for="bottomRows"># of Straight Bottom Rows:</label>
-                        <input type="number" id="bottomRows" value="20">
-                    </div>
-                    
-                    <input type="submit"></input>    
-                </form>        
-            </div>
-            <div class="pattern">
-                <div class="topRows">
+                <div style="display: flex">
+                    <form action="" id="beadConfig">
+                        <h2>Configure layout</h2>
+                        <div class="section">
+                            <label for="length">Minimum Row Length:</label>
+                            <input type="number" id="length" value="6">
+                        </div>
+                        <div class="section">
+                            <label for="topRows"># of Staggered Top Rows:</label>
+                            <input type="number" id="topRows" value="5">
+                        </div>
+                        <div class="section">
+                            <label for="bottomRows"># of Straight Bottom Rows:</label>
+                            <input type="number" id="bottomRows" value="5">
+                        </div>
+                        
+                        <input type="submit" value="Initialize"></input>
+                        <!-- <button>Add</button> -->
+                    </form>
+                    <div class="fileManagement">
+                        <form id="export">
+                            <h2>Download Pattern</h2>
+                            <div style="display:inline">
+                                <label for="fileName">Filename:</label>
+                                <input type="text" id="fileName" name="name" value="pattern.json" style="width:80%">
+                                <input type="submit" value="Download">
+                            </div>
+                        </form>
 
+                        <form id="uploadForm">
+                            <h2>Upload Pattern File</h2>
+                            <label for="upload">Upload a pattern file:</label>
+                            <input type="file" accept="text/json" id="upload"> 
+                        </form>
+                    </div>
                 </div>
-                <div class="bottomRows">
-                    
-                </div>
+            </div>
+
+            <div class="pattern">
+                <div class="topRows"></div>
+                <div class="bottomRows"></div>
             </div>
         </div>
     </body>
@@ -46,5 +63,13 @@
             patternMaker.makeTopRows(obj.topRows, obj.length);
             patternMaker.makeBottomRows(obj.bottomRows, obj.length);
         });
+        document.querySelector("#upload").addEventListener('change', (e) => {
+            e.preventDefault();
+            patternMaker.import();
+        })
+        document.querySelector("#export").addEventListener('submit', (e) => {
+            e.preventDefault()
+            patternMaker.export(document.querySelector("#fileName").value);
+        })
     </script>
 </html>

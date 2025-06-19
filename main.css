@@ -4,9 +4,36 @@
 }
 
 .inputGroup {
-    padding: 20px 0;
+    padding: 0;
 }
 
+h1 {
+    font:
+        2rem "Fira Sans",
+        sans-serif;
+    margin: 0
+}
+
+h2 {
+    font:
+        1.5rem "Fira Sans",
+        sans-serif
+}
+
+.fileManagement {
+    margin-left: 80px;
+}
+
+label {
+    display: block;
+    font:
+        1rem "Fira Sans",
+        sans-serif
+}
+input,
+label {
+  margin: 0.1rem 0;
+}
 table {
     border-collapse: collapse;
 }
