@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Seed Bead Pattern Maker</title>
+        <script src="pattern.js"></script>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Seed Bead Pattern Maker</h1>
+            <div class="inputGroup">
+                <form action="" id="beadConfig">
+                    <div class="section">
+                        <label for="length">Row Length:</label>
+                        <input type="number" id="length" value="20">
+                    </div>
+                    <div class="section">
+                        <label for="topRows"># of Staggered Top Rows:</label>
+                        <input type="number" id="topRows" value="15">
+                    </div>
+                    <div class="section">
+                        <label for="bottomRows"># of Straight Bottom Rows:</label>
+                        <input type="number" id="bottomRows" value="20">
+                    </div>
+                    
+                    <input type="submit"></input>    
+                </form>        
+            </div>
+            <div class="pattern">
+                <div class="topRows">
+
+                </div>
+                <div class="bottomRows">
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        document.querySelector("#beadConfig").addEventListener('submit', (e) => {
+            e.preventDefault()
+            let obj = {};
+            obj.length = document.querySelector("#length").value
+            obj.topRows = document.querySelector("#topRows").value
+            obj.bottomRows = document.querySelector("#bottomRows").value
+            patternMaker.makeTopRows(obj.topRows, obj.length);
+            patternMaker.makeBottomRows(obj.bottomRows, obj.length);
+        });
+    </script>
+</html>

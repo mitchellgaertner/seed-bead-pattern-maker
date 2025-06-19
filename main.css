@@ -1,0 +1,39 @@
+.container {
+    padding: 5px 30px;
+    display: block;
+}
+
+.inputGroup {
+    padding: 20px 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+
+.beadColor {
+    border: none;
+    border-color: transparent;
+    max-width: 40px;
+    height: 40px;
+    padding: 0;
+}
+.section {
+    padding-bottom: 20px
+}
+
+.patternBlock {
+    border: 1px solid black;
+    min-width: 40px;
+    height: 40px;
+}
+
+.bufferBlock {
+    padding: 8px;
+    width:7px;
+    height: 30px;
+}
+.offsetRow {
+    padding-left: 30px;
+}
