@@ -61,9 +61,9 @@ patternMaker.getPatternJSON = () => {
 patternMaker.export = (filename) => {
   var element = document.createElement('a');
   let text = JSON.stringify(patternMaker.getPatternJSON());
-  console.log(text);
+
   element.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
+  element.setAttribute('download', filename + '.json');
 
   element.style.display = 'none';
   document.body.appendChild(element);
