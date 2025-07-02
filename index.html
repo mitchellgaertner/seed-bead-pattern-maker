@@ -27,6 +27,7 @@
                         <input type="submit" value="Initialize"></input>
                         <!-- <button>Add</button> -->
                     </form>
+
                     <div class="fileManagement">
                         <form id="export">
                             <h2>Download Pattern</h2>
@@ -43,7 +44,13 @@
                             <input type="file" accept="text/json" id="upload"> 
                         </form>
                     </div>
+                    <div class="color-lock-section" style="padding-bottom: 2rem">
+                        <h2>Lock Color</h2>
+                        <input type="color" id="colorLock">
+                        <input type="checkbox" id="colorLockBool">
+                    </div>
                 </div>
+
             </div>
 
             <div class="pattern">
@@ -54,14 +61,31 @@
     </body>
 
     <script>
-        document.querySelector("#beadConfig").addEventListener('submit', (e) => {
+        document.querySelector("#beadConfig").addEventListener('submit', async (e) => {
             e.preventDefault()
             let obj = {};
             obj.length = document.querySelector("#length").value
             obj.topRows = document.querySelector("#topRows").value
             obj.bottomRows = document.querySelector("#bottomRows").value
-            patternMaker.makeTopRows(obj.topRows, obj.length);
-            patternMaker.makeBottomRows(obj.bottomRows, obj.length);
+            await patternMaker.makeTopRows(obj.topRows, obj.length);
+            await patternMaker.makeBottomRows(obj.bottomRows, obj.length);
+
+            document.querySelectorAll('.colorBtn').forEach(i => {
+                i.addEventListener('click', (e) => {
+                    let locked = document.querySelector('#colorLockBool').checked
+                    if (!locked){
+                        e.target.querySelector('*').showPicker();
+                    } else {
+                        e.target.querySelector('*').value = document.querySelector('#colorLock').value
+                        let newColor = e.target.querySelector('*').value;
+                        e.target.style = "background-color: " + newColor;
+                    }
+                   
+                })
+                i.querySelector('*').addEventListener('change', (e) => {
+                    i.style = 'background-color:' + e.target.value;
+                })
+            })
         });
         document.querySelector("#upload").addEventListener('change', (e) => {
             e.preventDefault();
